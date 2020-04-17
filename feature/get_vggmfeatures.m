@@ -54,7 +54,7 @@ function initial_vggmnet()
 % INITIAL_NET: Loading VGG-Net-16
 
 global vggmnet;
-vggmnet = load('./model/imagenet-vgg-m-2048.mat');
+vggmnet = load('F:/model/imagenet-vgg-m-2048.mat');
 
 % Remove the fully connected layers and classification layer
 vggmnet.layers(14+1:end) = [];

@@ -60,7 +60,7 @@ function initial_vgg16net()
 % INITIAL_NET: Loading VGG-Net-16
 global vgg16net;
 
-vgg16net = load('./model/imagenet-vgg-verydeep-16.mat');
+vgg16net = load('F:/model/imagenet-vgg-verydeep-16.mat');
 
 % Remove the fully connected layers and classification layer
 vgg16net.layers(30+1:end) = [];
