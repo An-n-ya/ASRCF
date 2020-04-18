@@ -8,7 +8,7 @@
 
 ​		在目标跟踪的过程中，目标的形态以及目标周围的环境始终在不断变化，这是目标跟踪亟待解决的难题，根据OTB标准，可将这种变化分为以下几类：
 
-![image-20200418103756578](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418103756578.png)
+![image-20200418103756578](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418103756578.png)
 
 （1）：形态变化；（2）：光照变化；（3）：相似物体干扰；（4）：运动模糊；（5）：背景杂乱；（6）：遮挡；（7）：出界；（8）：尺度变化；（9）：平面内旋转；（10）：平面外旋转；（11）：背景融入。
 
@@ -16,13 +16,13 @@
 
 ​		本毕设设计所涉及的ASRCF是当下跟踪器中表现性能卓越的方法，见下图，希望能深刻理解该方法，并对该方法做一定优化，使其性能有所提升。
 
-![image-20200418105259541](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418105259541.png)
+![image-20200418105259541](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418105259541.png)
 
 ## 相关滤波类跟踪算法
 
 ​		基于相关滤波理论的跟踪方案在频域内进行计算有效控制了运算成本,提高了跟踪效率. 依据已有知识,可将相关滤波类跟踪器的一般框架归纳为下图所示.
 
-![image-20200418103209807](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418103209807.png)
+![image-20200418103209807](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418103209807.png)
 
 ​		首先在初始帧确定的目标位置提取图像块,训练滤波器. 然后在跟踪过程中,根据过往帧中的目标位置,在当前帧中估计包含目标的图像块.为了有效的表示目标外观,可在选定的图像块中提取手工特征、深度特征或融合特征,并利用余弦窗口平滑边界. 通过离散傅里叶变换执行相关滤波操作. 最后通过傅里叶逆变换得到响应地图,响应得分最大值所在的位置即为目标在当前帧中的新位置.
 
@@ -32,15 +32,15 @@
 
   信号处理中的相关性，指的是两个元素之间的联系。按元素的类别，可以分为互相关(两个信号之间的联系)和自相关(信号与自身的相关性)。假设有两个信号f和g，则两个信号的相关性为：
 
-![image-20200418113210909](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113210909.png)
+![image-20200418113210909](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113210909.png)
 
 ​	举个例子，现有如下仓鼠
 
-​	![image-20200418113244512](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113244512.png)
+​	![image-20200418113244512](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113244512.png)
 
 ​	将上面两幅图做相关运算，得到结果如下图：
 
-![image-20200418113335447](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113335447.png)
+![image-20200418113335447](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113335447.png)
 
 注意到，图像的中心，也就是原图中仓鼠所在的位置，产生了波峰，说明追踪目标与原图中心有较好的相关度。
 利用这样的性质，便可以考虑设计相关滤波器。
@@ -49,21 +49,21 @@
 
 2010年CVPR，David S.Bolme在文章《visual object tracking using adaptive correlation filters》中首次将相关滤波器用在了跟踪领域。作者提出的滤波器叫做Minimum Output Sumof Squared Error filter(MOSSE)。模型如下：
 
-​	![image-20200418113738153](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113738153.png)
+​	![image-20200418113738153](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113738153.png)
 
 其中 \hat h代表h的傅里叶变换，y为高斯分布，x为输入信号，h为滤波器。在MOSSE中，所有的操作都是元素级别的，因此使用的是Frobenius范数。
 
 对于上述优化问题，直接求导便可以得到最优解为：
 
-![image-20200418113826819](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113826819.png)
+![image-20200418113826819](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113826819.png)
 
 但这样得到的滤波器仅对某一帧有效，为了使滤波器对跟踪目标的形变、光照等外界影响有更好的鲁棒性，采取了如下更新策略：
 
-![image-20200418113845367](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418113845367.png)
+![image-20200418113845367](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113845367.png)
 
 该方法充分利用了频域运算的优势，大大提高了运算效率，帧率高达600fps。但该方法对于目标的形变旋转、背景的变化、尺度变化、遮挡等问题处理不佳。
 
-![surfer_mosse](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/surfer_mosse.gif)
+![surfer_mosse](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/surfer_mosse.gif)
 
 #### 边界效应
 
@@ -71,23 +71,23 @@ MOSSE的种种问题成为了后来相关滤波器的研究方向，其中，关
 
 由于相关滤波器引入了频域操作，而二维相关操作需要进行周期延拓，所以实际的进入相关操作的样本如下图。
 
-![image-20200418114933846](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418114933846.png)
+![image-20200418114933846](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418114933846.png)
 
 当目标移动到边缘时，就可能会形成“错影”，如下图，导致跟踪器跟错目标。
 
-![image-20200418115125260](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418115125260.png)
+![image-20200418115125260](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418115125260.png)
 
 比较好的方法是对滤波器施加惩罚项，目标函数如下：
 
-![image-20200418115505263](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418115505263.png)
+![image-20200418115505263](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418115505263.png)
 
 其中的w便是所谓的“惩罚”，它是高斯形状的如下：
 
-![image-20200416202139031](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200416202139031.png)
+![image-20200416202139031](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200416202139031.png)
 
 该w在跟踪器中心值最小，边缘值最大，这样的分布可以对跟踪器$h$的边缘增加惩罚，使得h在边缘处值更小，一来可		以使跟踪器专注于目标，减少背景干扰，这样便可以增加padding，让跟踪器在更大的区域搜索目标；二来可以减小		边界效应。使用了惩罚项的跟踪器效果如下：
 
-![image-20200416202657862](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200416202657862.png)
+![image-20200416202657862](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200416202657862.png)
 
 ## 自适应相关滤波
 
@@ -95,12 +95,12 @@ MOSSE的种种问题成为了后来相关滤波器的研究方向，其中，关
 
 我们把原来的目标函数改一下，把w不看做常数，而看成一个待优化的量，并在后面再添加一项带有先验信息的惩罚项。
 
-![image-20200418120748490](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418120748490.png)
+![image-20200418120748490](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418120748490.png)
 
 使用ADMM方法求解该优化方程便可得如下效果。
 
-![image-20200418120826607](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/image-20200418120826607.png)
+![image-20200418120826607](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418120826607.png)
 
 可见，使用了空间自适应加权相关滤波的ASRCF具有更好的w权值，能够对目标进行针对性的学习。具体跟踪效果如下：
 
-![faceocc1](https://github.com/ankh04/ASRCF/blob/master/fig/fig8/faceocc1.gif)
+![faceocc1](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/faceocc1.gif)
