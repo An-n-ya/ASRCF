@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0107)http://sjpt.upc.edu.cn/bylw/Main/Main.aspx?sid=5RjL5coX18FNT4wDC04qCw....&screen=Bp2XrzMfNAjP9o5rnBTqJQ.... -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><title>
+	中国石油大学毕业设计(论文)智能管理系统
+</title><link href="./中国石油大学毕业设计(论文)智能管理系统_files/ASPNET2BaseCss.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.table01{border-collapse:collapse;border:none;}
+.td01{border:solid #dff1ff 1px;}
+.STYLE1 {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+.STYLE3 {color: #FFFFFF; font-size: 12px; font-weight: bold; }
+.STYLE4 {
+	color: #31589d;
+	font-size: 12px;
+}
+.STYLE6 {color: #31589d; font-size: 12px; font-weight: bold; }
+.STYLE7 {font-size: 12px}
+.STYLE8 {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+}
+</style>
+
+    <script type="text/javascript">
+    var fontobj=null;
+    var tempdiv=null;
+    function GetColor(obj)
+    {
+        if(fontobj!=null)
+        {
+            fontobj.color="#fff";
+        }
+        fontobj=obj;
+        obj.color="#31589d";
+    }
+    function ShowDiv(divid)
+    {
+        document.getElementById("div1").style.display="none";
+        document.getElementById("div2").style.display="none";
+        document.getElementById("div3").style.display="none";
+        document.getElementById("div4").style.display="none";
+        document.getElementById("div5").style.display="none";
+        document.getElementById("div6").style.display="none";
+        document.getElementById("div9").style.display="none";
+        document.getElementById("div10").style.display="none";
+        document.getElementById("div13").style.display = "none";
+        document.getElementById("div12").style.display="none";
+        document.getElementById("div17").style.display="none";
+        document.getElementById("div7").style.display="none";
+        document.getElementById(divid).style.display="";
+        
+        SetCwinHeight('iframe2');
+    }
+    function FrameHeight()   
+    {   
+        if(parent.iframe2.document.body.scrollHeight<700)
+        {
+            parent.document.getElementById("iframe2").style.height=700; 
+          //  parent.document.getElementById("iframe1").style.height=700; 
+           
+        }
+        else
+        {
+            parent.document.getElementById("iframe2").style.height=parent.iframe2.document.body.scrollHeight+12; 
+           // parent.document.getElementById("iframe1").style.height=parent.iframe2.document.body.scrollHeight+12; 
+            //parent.document.getElementById("iframe1").style.height=document.body.scrollHeight;
+        }
+    }
+    
+    function ktbgshow()
+    {
+    if(document.getElementById("ktbg").style.display=="none")
+    {
+       document.getElementById("ktbg").style.display="";
+       document.getElementById("ktbgtd").background="../images/main/main_07_1.jpg";
+       
+     }
+    else
+    {
+    document.getElementById("ktbg").style.display="none";
+    document.getElementById("ktbgtd").background="../images/main/main_07_03.jpg"
+     
+     }// alert(document.getElementById("ktbg").style);
+    }
+     function ktbgshow1()
+    {
+    if(document.getElementById("ktbg1").style.display=="none")
+    {
+       document.getElementById("ktbg1").style.display="";
+       document.getElementById("ktbgtd1").background="../images/main/main_07_1.jpg";
+       
+     }
+    else
+    {
+    document.getElementById("ktbg1").style.display="none";
+    document.getElementById("ktbgtd1").background="../images/main/main_07_03.jpg"
+     
+     }// alert(document.getElementById("ktbg").style);
+    }
+    
+     function ShowDivxy(divid)
+    {
+        document.getElementById("divxy1").style.display="none";
+        document.getElementById("divxy2").style.display="none";
+        document.getElementById("divxy3").style.display="none";
+        document.getElementById("divxy4").style.display="none";
+        document.getElementById("divxy5").style.display="none";
+        document.getElementById("divxy6").style.display="none";
+        document.getElementById("divxy7").style.display="none";
+        document.getElementById("divxy16").style.display = "none";
+
+
+        document.getElementById(divid).style.display="";
+        SetCwinHeight('iframe2');
+    }
+	
+	 function ShowDivJS(divid)
+    {
+        document.getElementById("divjs1").style.display="none";
+		 document.getElementById("divjs2").style.display="none";
+		 document.getElementById("divjs3").style.display="none";
+      document.getElementById("divjs4").style.display="none";
+      document.getElementById("divjs15").style.display = "none";
+        document.getElementById(divid).style.display="";
+       SetCwinHeight('iframe2');
+    }
+	
+	  var FFextraHeight = 0;
+if(window.navigator.userAgent.indexOf("Firefox")>=1)
+{
+FFextraHeight =100;
+}
+function SetCwinHeight(iframeObj){
+
+if(iframeObj && !window.opera)
+{
+   iframeObj.style.display = "block";
+   if(iframeObj.contentDocument  && iframeObj.contentDocument .body.offsetHeight)
+   {
+   if(iframeObj.contentDocument .body.offsetHeight<600)
+   //如果窗体太小，并且高度小于600，则设置窗体高度为600.
+       iframeObj.height=600;
+   else
+    iframeObj.height = iframeObj.contentDocument .body.offsetHeight + FFextraHeight;
+   }
+   else if (iframeObj.Document && iframeObj.Document.body.scrollHeight)
+   {
+    //alert(iframeObj.Document.body.scrollHeight);
+    
+     if(iframeObj.Document.body.scrollHeight<600)
+    //如果窗体太小，并且高度小于600，则设置窗体高度为600.
+            iframeObj.height=600;
+     else
+             iframeObj.height = iframeObj.Document.body.scrollHeight;
+
+   }
+}
+
+    }
+	
+	
+	
+	 function ShowDivJS(divid)
+    {
+        document.getElementById("divjs1").style.display="none";
+        document.getElementById("divjs2").style.display="none";
+        document.getElementById("divjs3").style.display="none";
+        document.getElementById("divjs4").style.display="none";
+      
+        document.getElementById(divid).style.display="";
+        SetCwinHeight('iframe2');
+    }
+    
+    
+    function ShowDivZY(divid)
+    {
+        document.getElementById("divzy1").style.display="none";
+        document.getElementById("divzy2").style.display="none";
+        document.getElementById("divzy3").style.display="none";
+        document.getElementById("divzy4").style.display="none";
+      
+        document.getElementById(divid).style.display="";
+        SetCwinHeight('iframe2');
+    }
+    
+    
+    function ShowDivYZ(divid)
+    {
+        document.getElementById("divyz1").style.display="none";
+        document.getElementById("divyz2").style.display="none";
+        document.getElementById("divyz3").style.display="none";
+        document.getElementById("divyz4").style.display="none";
+        document.getElementById("divyz5").style.display = "none";
+        document.getElementById("div8").style.display = "none";
+        document.getElementById("divyz14").style.display = "none";
+        document.getElementById(divid).style.display="";
+        SetCwinHeight('iframe2');
+    }
+    
+	
+    </script>
+
+</head>
+<body style="margin-top: 0px; margin-left: 0px">
+    <table id="Table_01" width="1002" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody><tr>
+            <td colspan="2">
+                <iframe style="border-width: 0px; border-style: dotted; border-color: rgb(255, 255, 255); --darkreader-inline-border-right:#333333; --darkreader-inline-border-top:#333333; --darkreader-inline-border-left:#333333; --darkreader-inline-border-bottom:#333333;" name="I1" src="./中国石油大学毕业设计(论文)智能管理系统_files/Head.html" frameborder="no" scrolling="no" width="1002" height="108" data-darkreader-inline-border-right="" data-darkreader-inline-border-top="" data-darkreader-inline-border-left="" data-darkreader-inline-border-bottom=""></iframe>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <table width="1002" cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td width="170" valign="top" background="./中国石油大学毕业设计(论文)智能管理系统_files/300.jpg">
+                            
+                            <table width="159" border="0" cellspacing="0" cellpadding="0">
+                                <tbody><tr>
+                                    <td width="159" height="24" valign="middle" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_04.jpg">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td align="left" style="padding-left: 25px; width: 121px; cursor: hand">
+                                                    <span class="STYLE3">流程管理</span></td>
+                                                <td>
+                                                    <img src="./中国石油大学毕业设计(论文)智能管理系统_files/up.jpg" width="9" height="9"></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelReport.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">学生选题</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/lookrws.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">查看任务书</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07_03.jpg" id="ktbgtd" style="padding-left: 28px;
+                                                    cursor: hand" onclick="ktbgshow()">
+                                                    <span class="STYLE4"><font color="red" data-darkreader-inline-color="" style="--darkreader-inline-color:#ff3333;">开题报告等材料信息</font></span></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: none" id="ktbg">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody><tr>
+                                                    <td valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody><tr>
+                                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07_02.jpg" style="padding-left: 28px">
+                                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelKaiTi.aspx?Type=KaiTi&amp;sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main"><span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">开题报告</font></span></a></td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody><tr>
+                                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07_02.jpg" style="padding-left: 28px">
+                                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelKaiTiEw.aspx?Type=KaiTiEn&amp;sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main"><span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">外文翻译</font></span></a></td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                    </td>
+                                                </tr>
+                                            </tbody></table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelZhongqi.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#fff" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">中期检查</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelZJZ.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">周进展情况记录</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/CaoGao.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">论文初稿及检测</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/LunWen.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">论文定稿及检测</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/LunWenPY.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">查看评阅教师评语</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/ViewZongFen.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">教师评价</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/ShowDBZ.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">查看答辩信息</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/DG_sqs.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">校外毕业设计申请书</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/biaoge.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">表格材料打印</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td width="159" height="24" valign="middle" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_04.jpg">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td align="left" style="padding-left: 25px; width: 121px; cursor: hand">
+                                                    <span class="STYLE3">特殊情况处理</span></td>
+                                                <td>
+                                                    <img src="./中国石油大学毕业设计(论文)智能管理系统_files/up.jpg" width="9" height="9"></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                             <tbody><tr>
+                                                 <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                     <a href="http://sjpt.upc.edu.cn/bylw/Student/SelKaiTiXg.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                         <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">开题报告修改申请</font></span></a></td>
+                                             </tr>
+                                            <tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/LunWenUpdate.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">论文定稿修改提交</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="159" height="24" valign="middle" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_04.jpg">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td align="left" style="padding-left: 25px; width: 121px; cursor: hand">
+                                                    <span class="STYLE3">账号管理</span></td>
+                                                <td>
+                                                    <img src="./中国石油大学毕业设计(论文)智能管理系统_files/up.jpg" width="9" height="9"></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/MiMa.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main"><span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">修改密码</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/xgxx.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main"><span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">修改个人信息</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="159" height="24" valign="middle" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_04.jpg">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td align="left" style="padding-left: 25px; width: 121px; cursor: hand">
+                                                    <span class="STYLE3">交流互动</span></td>
+                                                <td>
+                                                    <img src="./中国石油大学毕业设计(论文)智能管理系统_files/up.jpg" width="9" height="9"></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Message/SelMessage.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">收件箱</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Message/SelFMessage.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">发件箱</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="22" background="./中国石油大学毕业设计(论文)智能管理系统_files/main_07.jpg" style="padding-left: 28px">
+                                                    <a href="http://sjpt.upc.edu.cn/bylw/Student/SelRiZhi.aspx?sid=5RjL5coX18FNT4wDC04qCw....&amp;screen=Bp2XrzMfNAjP9o5rnBTqJQ...." target="Main">
+                                                        <span class="STYLE4"><font onclick="GetColor(this)" color="#31589d" data-darkreader-inline-color="" style="--darkreader-inline-color:#89b2da;">指导日志</font></span></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="100" background="./中国石油大学毕业设计(论文)智能管理系统_files/300.jpg">
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            
+                        </td>
+                        <td style="background-color: rgb(223, 241, 255); --darkreader-inline-bgcolor:#212325;" valign="top" data-darkreader-inline-bgcolor="">
+                            <iframe name="Main" id="iframe2" onload="iFrameHeight()" style="background-color: rgb(223, 241, 255); border-width: 0px; border-style: dotted; border-color: rgb(255, 255, 255); --darkreader-inline-bgcolor:#212325; --darkreader-inline-border-right:#333333; --darkreader-inline-border-top:#333333; --darkreader-inline-border-left:#333333; --darkreader-inline-border-bottom:#333333;" src="./中国石油大学毕业设计(论文)智能管理系统_files/Default.html" frameborder="no" scrolling="no" width="843" data-darkreader-inline-bgcolor="" data-darkreader-inline-border-right="" data-darkreader-inline-border-top="" data-darkreader-inline-border-left="" data-darkreader-inline-border-bottom="" height="1129"></iframe>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <iframe name="Main" id="iframe3" style="border-width: 0px; border-style: dotted; border-color: rgb(255, 255, 255); --darkreader-inline-border-right:#333333; --darkreader-inline-border-top:#333333; --darkreader-inline-border-left:#333333; --darkreader-inline-border-bottom:#333333;" src="./中国石油大学毕业设计(论文)智能管理系统_files/MainBack.html" height="28px" frameborder="no" scrolling="no" width="1002" data-darkreader-inline-border-right="" data-darkreader-inline-border-top="" data-darkreader-inline-border-left="" data-darkreader-inline-border-bottom=""></iframe>
+            </td>
+        </tr>
+    </tbody></table>
+    <input name="Role" type="hidden" id="Role">
+    
+
+    <script type="text/javascript" language="javascript"> 
+function iFrameHeight() { 
+var ifm= document.getElementById("iframe2"); 
+var subWeb = document.frames ? document.frames["iframe2"].document : ifm.contentDocument; 
+if(ifm != null && subWeb != null) { 
+ifm.height = subWeb.body.scrollHeight; 
+ifm.height=ifm.height<600?600:ifm.height;
+} 
+} 
+    </script>
+
+
+
+</body></html>
