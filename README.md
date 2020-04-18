@@ -1,30 +1,34 @@
-# 中期检查报告
+# 中期检查
 
-## 目标跟踪
+## 主要任务
 
-​		目标跟踪是一个机遇与挑战并存的机器视觉研究方向，因在自动驾驶 、交通流监控、人机交互 、机器人 、医学诊断和行为识别等领域得到广泛应用，而成为了研究热点。机遇主要体现在虽然经过十几年的研究，该方向已经有了许多突破性的进展，但是仍然存在进一步深入研究和提升的空间。 挑战性则体现在复杂境和目标本身两个方面，具体而言，跟踪失败可以归因于跟踪过程中发生的遮挡、光照变化、尺度和形态差异以及快速运动等不利因素。
+  （1）熟悉数字图像处理相关理论知识；
 
-​		目标跟踪旨在从连续视频帧中识别出感兴趣区域。 一般而言，跟踪框架由 4 个模块组成，分别是目标初始化、外观建模、运动估计和目标定位。 目标初始化是对目标的位置或感兴趣区域标示包围框的过程，外观建模是由具备判别能力的目标特征和构造的数学模型组成的检测过程，运动估计是推断跟踪后续帧中目标所处位置的过程，而目标定位操作则涉及到最大后验概率预测或贪婪搜索策略。 大量的跟踪算法被相继提出，回答了何为视觉目标跟踪，何种学习机制适用于跟踪任务，以及如何有效定义外观模型和运动模型等问题。
+  （2）学习matlab编程；
 
-​		在目标跟踪的过程中，目标的形态以及目标周围的环境始终在不断变化，这是目标跟踪亟待解决的难题，根据OTB标准，可将这种变化分为以下几类：
+  （3）学习核相关滤波相关理论知识；
 
-![image-20200418103756578](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418103756578.png)
+  （4）实现基于自适应空间加权相关滤波的视觉目标跟踪算法，并进行实验验证。
 
-（1）：形态变化；（2）：光照变化；（3）：相似物体干扰；（4）：运动模糊；（5）：背景杂乱；（6）：遮挡；（7）：出界；（8）：尺度变化；（9）：平面内旋转；（10）：平面外旋转；（11）：背景融入。
+  （5）严格按照中国石油大学(华东)本科毕业设计(论文)环节管理规定和“控制科学与工程学院2020届毕业设计（论文）相关规定”撰写论文。
 
-​		面对目标跟踪算法井喷式发展却没有统一的衡量标准的现状，Yi Wu等人于2013年与2015年发布了OTB标准，该标准设计了基于中心点欧氏距离的Pression plot与基于边框重叠率的Success plot两种指标，并针对以上11种问题分别进行测量。
+## 任务目标
 
-​		本毕设设计所涉及的ASRCF是当下跟踪器中表现性能卓越的方法，见下图，希望能深刻理解该方法，并对该方法做一定优化，使其性能有所提升。
+* 深入了解课题研究的目的、内容，整理研究思路、具体需要解决的问题和预期目标等
+* 深入学习、研究相关滤波算法，实现基本的相关滤波方法，并总结基本相关滤波方法的优缺点
+* 实现基于自适应的相关滤波算法
+* 基于自适应空间加权相关滤波，并进行跟踪实验验证
 
-![image-20200418105259541](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418105259541.png)
+## 项目工作进展
 
-## 相关滤波类跟踪算法
+### 已完成任务
 
-​		基于相关滤波理论的跟踪方案在频域内进行计算有效控制了运算成本,提高了跟踪效率. 依据已有知识,可将相关滤波类跟踪器的一般框架归纳为下图所示.
-
-![image-20200418103209807](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418103209807.png)
-
-​		首先在初始帧确定的目标位置提取图像块,训练滤波器. 然后在跟踪过程中,根据过往帧中的目标位置,在当前帧中估计包含目标的图像块.为了有效的表示目标外观,可在选定的图像块中提取手工特征、深度特征或融合特征,并利用余弦窗口平滑边界. 通过离散傅里叶变换执行相关滤波操作. 最后通过傅里叶逆变换得到响应地图,响应得分最大值所在的位置即为目标在当前帧中的新位置.
+- [x] 相关文献的阅读、翻译，开题报告及文献综述的撰写
+- [x] 理解了相关滤波算法的实现原理、优缺点
+- [x] 实现了最原始的相关滤波算法MOSSE
+- [x] 实现了自适应相关滤波算法ASRCF
+- [x] 基于OTB平台对各种相关滤波算法进行了评估
+- [x] 针对ASRCF算法的优化
 
 ### 相关滤波理论
 
@@ -45,9 +49,29 @@
 注意到，图像的中心，也就是原图中仓鼠所在的位置，产生了波峰，说明追踪目标与原图中心有较好的相关度。
 利用这样的性质，便可以考虑设计相关滤波器。
 
-### MOSSE
+### 相关滤波的优缺点
 
-2010年CVPR，David S.Bolme在文章《visual object tracking using adaptive correlation filters》中首次将相关滤波器用在了跟踪领域。作者提出的滤波器叫做Minimum Output Sumof Squared Error filter(MOSSE)。模型如下：
+* 优点
+
+  基于相关滤波理论的跟踪方案在频域内进行计算有效控制了运算成本,提高了跟踪效率.
+
+* 缺点
+
+  #### 边界效应
+
+  MOSSE的种种问题成为了后来相关滤波器的研究方向，其中，关于相关滤波器最大的问题便是“边界效应”。
+
+  由于相关滤波器引入了频域操作，而二维相关操作需要进行周期延拓，所以实际的进入相关操作的样本如下图。
+
+  ![image-20200418114933846](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418114933846.png)
+
+  当目标移动到边缘时，就可能会形成“错影”，如下图，导致跟踪器跟错目标。
+
+  ![image-20200418115125260](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418115125260.png)
+
+### MOSSE相关滤波实现
+
+MOSSE模型如下：
 
 ​	![image-20200418113738153](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113738153.png)
 
@@ -61,46 +85,157 @@
 
 ![image-20200418113845367](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418113845367.png)
 
-该方法充分利用了频域运算的优势，大大提高了运算效率，帧率高达600fps。但该方法对于目标的形变旋转、背景的变化、尺度变化、遮挡等问题处理不佳。
+使用matlab编写程序：
 
-![surfer_mosse](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/surfer_mosse.gif)
+单目标跟踪的目标确定于第一帧，因此模型对于第一帧的学习至关重要，于是程序应该对第一帧进行着重学习：
 
-#### 边界效应
+下面是对第一帧中目标的学习：
 
-MOSSE的种种问题成为了后来相关滤波器的研究方向，其中，关于相关滤波器最大的问题便是“边界效应”。
+```matlab
+g = gaussC(R,C, sigma, center);%通过R和C产生size等同于im的高斯滤波函数
+g = mat2gray(g);
+img = imcrop(img, rect);
+g = imcrop(g, rect);%将高斯函数的大小裁剪为目标大小
+G = fft2(g);%将高斯滤波函数变换到频域
+Ai = (G.*conj(fft2(fi)));%计算上式中的ai
+Bi = (fft2(fi).*conj(fft2(fi)));%计算上式中的bi
+N = 128;%确定循环次数
 
-由于相关滤波器引入了频域操作，而二维相关操作需要进行周期延拓，所以实际的进入相关操作的样本如下图。
+for i = 1:N%将第一帧目标随机旋转N次，让模型对其学习N次 
+    fi = preprocess(rand_warp(img));%旋转目标
+    Ai = Ai + (G.*conj(fft2(fi)));%更新ai
+    Bi = Bi + (fft2(fi).*conj(fft2(fi)));%更新bi
+end
+```
 
-![image-20200418114933846](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418114933846.png)
+学习完第一帧，之后便是线上学习了。
 
-当目标移动到边缘时，就可能会形成“错影”，如下图，导致跟踪器跟错目标。
+```matlab
+Hi = Ai./Bi;%由ai,bi得出滤波器
+fi = imcrop(img, rect);%根据目标大小裁剪输入图像            
+gi = uint8(255*mat2gray(ifft2(Hi.*fft2(fi))));%滤波器与图像在频域进行点积，再进行逆变换
+maxval = max(gi(:))
+[P, Q] = find(gi == maxval);%找出最大值的坐标
+dx = mean(P)-height/2;
+dy = mean(Q)-width/2;%算出偏移量
 
-![image-20200418115125260](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418115125260.png)
+rect = [rect(1)+dy rect(2)+dx width height];%根据跟踪结果计算出新的选框
+fi = imcrop(img, rect); %根据预测选框对当前帧进行裁剪
+Ai = eta.*(G.*conj(fft2(fi))) + (1-eta).*Ai;%更新ai
+Bi = eta.*(fft2(fi).*conj(fft2(fi))) + (1-eta).*Bi;%更新bi
+```
 
-比较好的方法是对滤波器施加惩罚项，目标函数如下：
+MOSSE的跟踪效果如下：
 
-![image-20200418115505263](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418115505263.png)
+![MOSSE_result](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/MOSSE_result.gif)
 
-其中的w便是所谓的“惩罚”，它是高斯形状的如下：
+可见，最原始的相关滤波器不能很好的应对目标的形变、尺度变化。
 
-![image-20200416202139031](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200416202139031.png)
+## 空间自适应权重相关滤波的推导以及实现
 
-该w在跟踪器中心值最小，边缘值最大，这样的分布可以对跟踪器$h$的边缘增加惩罚，使得h在边缘处值更小，一来可		以使跟踪器专注于目标，减少背景干扰，这样便可以增加padding，让跟踪器在更大的区域搜索目标；二来可以减小		边界效应。使用了惩罚项的跟踪器效果如下：
+ASRCF针对相关滤波算法存在的边界效应提出了自适应的惩罚项，能够对目标进行针对性的学习。
 
-![image-20200416202657862](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200416202657862.png)
+* 推导
 
-## 自适应相关滤波
-
-上面的惩罚项w能够比较好的抑制边界效应，但把w固定为高斯形状其实并不是比较好的方案，原因是，当目标被遮挡时，遮挡物和目标同处于中心，遮挡物便不会受到惩罚。为解决这个问题，便提出了自适应相关滤波方案。
-
-我们把原来的目标函数改一下，把w不看做常数，而看成一个待优化的量，并在后面再添加一项带有先验信息的惩罚项。
+ASRCF不把w看做常数，而看成一个待优化的量，并在后面再添加一项带有先验信息的惩罚项。
 
 ![image-20200418120748490](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418120748490.png)
 
-使用ADMM方法求解该优化方程便可得如下效果。
+对于该目标方程的优化参见https://github.com/ankh04/ASRCF/derivation.pdf
 
-![image-20200418120826607](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418120826607.png)
+对于ADMM的推导参见https://github.com/ankh04/ASRCF/ADMM.pdf
 
-可见，使用了空间自适应加权相关滤波的ASRCF具有更好的w权值，能够对目标进行针对性的学习。具体跟踪效果如下：
+* 实现
 
-![faceocc1](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/faceocc1.gif)
+具体程序很复杂，这里展示比较重要的。
+
+1. 特征提取
+
+   ```matlab
+   x = vl_simplenn(vggmnet,img);%通过matlab内置函数提取特征
+   ```
+
+   使用了三种特征：VGG16，VGG-M，fHOG
+
+   ```matlab
+   x_vgg16= get_vggfeatures(patch,use_sz,23);%提取VGG16特征
+   x_vggm=get_vggmfeatures(patch,use_sz,4);%提取VGG16特征
+   x_hc=get_features(patch,hogfeatures,hogparams);%提取VGG16特征
+   featuremap={x_hc*pe(1),x_vgg16*pe(2),x_vggm*pe(3)};%将三种特征按照一定的比例进行合并
+   ```
+
+2. fDSST
+
+   预先定义好五种缩放因子，跟踪五个缩放因子进行采样
+
+   ```matlab
+   for scale_ind = 1:nScales        
+       multires_pixel_template(:,:,:,scale_ind) = ...
+       get_pixels(im, pos, round(sz*currentScaleFactor*scaleFactors(scale_ind)), sz);       
+   end
+   ```
+
+   得出对由五个不同尺寸组成的样本金字塔得到的响应图后，找到响应和最大的。
+
+   ```matlab
+   max_response = 1 / prod(use_sz) * real(mtimesx(mtimesx(exp_iky, responsef, 'speed'), exp_ikx, 'speed'));
+   ```
+
+   这样便确定了最佳的缩放因子。
+
+3. 空间自适应优化
+
+   对w采用ADMM算法求解，过程如下：
+
+   ![image-20200418170244584](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418170244584.png)
+
+   ```matlab
+   while (i <= params.admm_iterations)
+       w = bsxfun(@rdivide,(q-m),(1+(params.admm_lambda1/mu)*Hh));
+       q=(params.admm_lambda2*model_w + mu*(w+m))/(params.admm_lambda2 + mu);
+       m = m + (w - q);
+       mu = min(betha * mu, mumax);
+       i = i+1;       
+   end
+   ```
+
+## 在OTB平台上对算法进行评估
+
+评估结果如下：
+
+![image-20200418171457399](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418171457399.png)
+
+DiMP与ATOM都是VOT2019中的SOTA跟踪器。GradNet是与ASRCF同出自大连理工大学的卢湖川团
+队，这两个跟踪器都上了CVPR2019。
+
+OTB对目标跟踪领域难题划分了11种难题，ASRCF在其中的两种表现得较差：
+
+在尺度缩放问题下：
+
+![image-20200418171610597](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418171610597.png)
+
+低分辨率下：
+
+![image-20200418171736732](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418171736732.png)
+
+## 对空间自适应权重滤波算法的优化
+
+* FFT算法加速
+
+  由于输入的图像均是实数矩阵，而实数矩阵的傅里叶变换是共轭对称的，所以在频域计算时可以只计算一半，这样便可以把计算量降低至50%。
+
+* 模型更新策略
+
+  采用了APCE（average peak-to correlation energy）这以置信度指标，只有在跟踪置信度比较高的时候才更新跟踪模型，避免目标模型被污染。APCE反应反应响应图的波动程度和检测目标的置信水平
+
+  ![image-20200418172117374](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418172117374.png)
+
+  g为response map
+
+  将APCE融入特别的模型更新函数，使得跟踪器能够对目标进行时间尺度上的自适应更新。
+
+  ![image-20200418172512622](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418172512622.png)
+
+  下图为otb benchmark下的skating2评分
+
+  ![image-20200418172539239](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418172539239.png)
