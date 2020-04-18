@@ -141,9 +141,9 @@ ASRCF不把w看做常数，而看成一个待优化的量，并在后面再添�
 
 ![image-20200418120748490](https://github.com/ankh04/ASRCF/blob/master/fig/中期检查/image-20200418120748490.png)
 
-对于该目标方程的优化参见https://github.com/ankh04/ASRCF/derivation.pdf
+对于该目标方程的优化参见https://github.com/ankh04/ASRCF/blob/master/derivation.pdf
 
-对于ADMM的推导参见https://github.com/ankh04/ASRCF/ADMM.pdf
+对于ADMM的推导参见https://github.com/ankh04/ASRCF/blob/master/ADMM.pdf
 
 * 实现
 
