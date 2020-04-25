@@ -12,7 +12,7 @@ base_path  = 'D:/data_seq';
 %ÕÚµ²µ¼ÖÂ¸ú¶ª£ºskating2.1
 %Ä£ºý£ºdragonbaby¡¢matrix
 
-seqname = 'skating2';
+seqname = 'dragonbaby';
 video_path = [base_path '/' seqname];
 [seq, ground_truth] = load_video_info(video_path,seqname);
 seq.startFrame = 1;
@@ -21,7 +21,7 @@ seq.ground_truth=ground_truth;
 
 rect_anno = dlmread(['./anno/' seq.name '.txt']);
 
-reset = [0 1 0];
+reset = [1 0 0];
 
 %%Run ASRCF- main function
 if exist(['./result/' seq.name '_' 'ASRCF' '.mat'])&& reset(1) == 0

@@ -86,6 +86,9 @@ params.ita = 0.2;%预定学习速率的攀升速率，ita越大攀升越快
 params.shrink = 0.9; %劣帧衰减速率
 params.APCE_size = 45;%APCE平均的帧数。
 
+%SME
+params.SMEswitch = true;
+
 
 %   Run the main function
 results = ASRCF_optimized(params);

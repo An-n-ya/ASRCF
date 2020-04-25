@@ -36,9 +36,6 @@ max_frame = 200;
 %SME init
 SME_ind_max = 0;
 SME_LT = zeros(1,4);
-SME_translation_vec = zeros(1,2,4);
-SME_disp_row = zeros(1,4);
-SME_disp_col = zeros(1,4);
 
 img_pass = ones(num_frames,1);
 
