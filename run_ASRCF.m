@@ -59,7 +59,7 @@ params.alphaw = 1;
 params.ifcompress=1;
 params.w_init = 7;
 %   Debug and visualization
-params.visualization = 1;
+params.visualization = 0;
 params.show_regularization = 0;
 
 %   Learning parameters
@@ -87,7 +87,8 @@ params.shrink = 0.9; %劣帧衰减速率
 params.APCE_size = 45;%APCE平均的帧数。
 
 %SME
-params.SMEswitch = true;
+params.Entropy = true;
+params.SME_eta = 0.5;
 
 
 %   Run the main function

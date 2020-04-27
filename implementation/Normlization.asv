@@ -1,0 +1,6 @@
+function A=Normlization(X)
+ 
+    mn=min(min(X));%行向量，每列的最小值    
+    mx=max(X);%行向量，每列的最大值    
+    A=bsxfun(@minus,X,mn)/diag(mx-mn);
+end

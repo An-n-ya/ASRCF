@@ -34,21 +34,26 @@ APCE_mat = zeros(APCE_size,1);
 frame_pass = false(num_frames,1);
 max_frame = 200;
 %SME init
+SME_ind = 0;
 SME_ind_max = 0;
 SME_LT = zeros(1,4);
-SME_translation_vec = zeros(1,2,4);
+SME_gf = cell(1,4);
+SME_translation_vec = cell(1,4);
+SME_responsef_padded = cell(1,4);
+SME_response = cell(1,4);
+SME_responsef = cell(1,4);
 SME_disp_row = zeros(1,4);
 SME_disp_col = zeros(1,4);
 
 img_pass = ones(num_frames,1);
 
 % decon init
-%if params.decon
-    prior_weights = [];
-    sample_weights = [];
-    latest_ind = [];
-    sample_frame = nan(params.nSamples);
-%end
+% %if params.decon
+%     prior_weights = [];
+%     sample_weights = [];
+%     latest_ind = [];
+%     sample_frame = nan(params.nSamples);
+% %end
 
 % use large scale for small target
    if init_target_sz(1)*init_target_sz(2)<900&&(size(im1,1)*size(im1,2))/(init_target_sz(1)*init_target_sz(2))>180
@@ -218,10 +223,12 @@ for frame = 1:num_frames
                xtf=cat(3,xtf{1},xtf{2},xtf{3});
                if params.SMEswitch
                    for SME_i = 1:SME_ind_max
-                       SME_ii = mod(SME_i,4)+1;
-                      SME_responsef{SME_ii}=permute(sum(bsxfun(@times, conj(SME_gf{SME_ii}), xtf), 3), [1 2 4 3]);
+                       if frame == 7
+                            1;
+                       end
+                      SME_responsef{SME_i}=permute(sum(bsxfun(@times, conj(SME_gf{SME_i}), xtf), 3), [1 2 4 3]);
+                      SME_responsef{SME_i}=gather(SME_responsef{SME_i});
                    end
-                   SME_responsef=gather(SME_responsef);
                else
                    responsef=permute(sum(bsxfun(@times, conj(g_f), xtf), 3), [1 2 4 3]);
                    responsef=gather(responsef);
@@ -239,9 +246,8 @@ for frame = 1:num_frames
         end
         if params.SMEswitch
             for SME_i = 1:SME_ind_max
-                SME_ii = mod(SME_i,4)+1;
-                SME_responsef_padded{SME_ii} = resizeDFT2(SME_responsef{SME_ii}, interp_sz);
-                SME_response{SME_ii} = ifft2(SME_responsef_padded{SME_ii}, 'symmetric');
+                SME_responsef_padded{SME_i} = resizeDFT2(SME_responsef{SME_i}, interp_sz);
+                SME_response{SME_i} = ifft2(SME_responsef_padded{SME_i}, 'symmetric');
             end
         else
             responsef_padded = resizeDFT2(responsef, interp_sz);
@@ -259,8 +265,7 @@ for frame = 1:num_frames
            [~, ~, sind] = resp_newton(responsehc, responsehcf_padded, newton_iterations, ky, kx, use_sz);
            if params.SMEswitch
                 for SME_i = 1:SME_ind_max
-                    SME_ii = mod(SME_i,4)+1;
-                    [SME_disp_row(SME_ii), SME_disp_col(SME_ii), ~] = resp_newton(SME_response{SME_ii}, SME_responsef_padded{SME_ii}, newton_iterations, ky, kx, use_sz);
+                    [SME_disp_row(SME_i), SME_disp_col(SME_i), ~] = resp_newton(SME_response{SME_i}, SME_responsef_padded{SME_i}, newton_iterations, ky, kx, use_sz);
                 end
            else
                [disp_row, disp_col, ~] = resp_newton(response, responsef_padded, newton_iterations, ky, kx, use_sz);
@@ -269,10 +274,6 @@ for frame = 1:num_frames
             [row, col, sind] = ind2sub(size(response), find(response == max(response(:)), 1));
             disp_row = mod(row - 1 + floor((interp_sz(1)-1)/2), interp_sz(1)) - floor((interp_sz(1)-1)/2);
             disp_col = mod(col - 1 + floor((interp_sz(2)-1)/2), interp_sz(2)) - floor((interp_sz(2)-1)/2);
-        end
-        if params.visualization
-            figure(3)
-            mesh(real(fftshift(response(:,:))));
         end
         %% calculate translation
         switch interpolate_response
@@ -287,8 +288,7 @@ for frame = 1:num_frames
             case 4
                 if params.SMEswitch
                     for SME_i = 1:SME_ind_max
-                        SME_ii = mod(SME_i,4)+1;
-                        SME_translation_vec{SME_ii} = round([SME_disp_row(SME_ii), SME_disp_col(SME_ii)] * featureRatio * currentScaleFactor * scaleFactors(sind));
+                        SME_translation_vec{SME_i} = round([SME_disp_row(SME_i), SME_disp_col(SME_i)] * featureRatio * currentScaleFactor * scaleFactors(sind));
                     end
                 else
                     translation_vec = round([disp_row, disp_col] * featureRatio * currentScaleFactor * scaleFactors(sind));
@@ -311,17 +311,27 @@ for frame = 1:num_frames
         SME_C = zeros(1,4);
          if params.SMEswitch
             for SME_i = 1:SME_ind_max
-                SME_ii = mod(SME_i,4)+1;
-                if SME_ind_max > 1
+                if SME_ind_max > 2
                     for SME_select = 1 : (SME_ind_max - 1)
-                        SME_select_i = mod((SME_i + SME_select),4)+1;
-                        SME_C(SME_i) = SME_C(SME_i) + SME_distance(SME_translation_vec{SME_ii},SME_translation_vec{SME_select_i});
+                        SME_select_i = (SME_i + SME_select);
+                        if SME_select_i > SME_ind_max
+                            SME_select_i = SME_select_i - SME_ind_max;
+                        end
+                        SME_C(SME_i) = SME_C(SME_i) + SME_distance(SME_translation_vec{SME_i},SME_translation_vec{SME_select_i});%SME_select_=4Ê±³ö´í
                     end
-                    SME_LT(SME_i) = SME_C(SME_i)/(SME_ind_max - 1);
+                    if params.Entropy
+                        SME_LT(SME_i) = SME_C(SME_i)/(SME_ind_max - 1) + params.SME_eta * Normlization(SME_response{SME_i});
+                    else
+                        SME_LT(SME_i) = SME_C(SME_i)/(SME_ind_max - 1);
+                    end
                 end
             end
-            [~,SME_argmax_ind] = max(SME_LT);
-            pos = pos + SME_translation_vec{mod(SME_argmax_ind,4)+1};
+            if SME_ind_max > 2
+                [~,SME_argmax_ind] = max(SME_LT);
+            else
+                SME_argmax_ind = 1;
+            end
+            pos = pos + SME_translation_vec{SME_argmax_ind};
          else
                 pos = pos + translation_vec;
          end
@@ -331,7 +341,29 @@ for frame = 1:num_frames
         end
     end
      target_sz = floor(base_target_sz * currentScaleFactor);
-    
+    %response_map
+    if params.visualization
+        if params.SMEswitch
+            figure(3)
+            axis off;
+            for SME_i = 1:SME_ind_max
+                axis off;
+                subplot(1,SME_ind_max,SME_i);
+                axis off;
+                imagesc(fftshift(SME_response{SME_i}));
+                if SME_i == SME_argmax_ind
+                    hold on
+                    axis off;
+                    rectangle('Position',[1,1,49,49],'LineWidth',3,'EdgeColor','g');
+                    axis off;
+                end
+            end
+        else
+            figure(3)
+            mesh(real(fftshift(response(:,:))));
+        end
+    end
+     
     %save position and calculate FPS
     rect_position(loop_frame,:) = [pos([2,1]) - floor(target_sz([2,1])/2), target_sz([2,1])];
  
@@ -479,7 +511,11 @@ end
          xf=cat(3,xf{1},xf{2},xf{3});
   else
 % use detection features
-         shift_samp_pos = 2*pi * translation_vec ./ (scaleFactors(sind)*currentScaleFactor * sz);
+        if params.SMEswitch
+            shift_samp_pos = 2*pi * SME_translation_vec{SME_argmax_ind} ./ (scaleFactors(sind)*currentScaleFactor * sz);
+        else
+            shift_samp_pos = 2*pi * translation_vec ./ (scaleFactors(sind)*currentScaleFactor * sz);
+        end
          xf = shift_sample(xtf, shift_samp_pos, kx', ky');
   end
     xhcf=xf(:,:,1:31);
@@ -545,7 +581,7 @@ end
     
     %SME
      if params.SMEswitch && (mod(frame, 5) == 1)
-        SME_ind = mod(mod(frame, 5),4)+1;
+        SME_ind = mod(SME_ind,4)+1;
         SME_gf{SME_ind} = g_f;
         if SME_ind_max < 4
             SME_ind_max = SME_ind_max + 1;
